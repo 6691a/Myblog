@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} PostList {% endblock %}
+
+{% block content %}
+    <ul>
+        <h1>Posts</h1>
+        {% for post in post %}
+            <li><a href="{% url 'postDetail' post.pk %}">{{post.title}} -{{post.author}}{{post.body}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

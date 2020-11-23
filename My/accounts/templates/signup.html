@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} signup {% endblock %}
+{% block content %}
+    <h1>회원가입</h1>
+    <form action=""method ="POST">
+        {% csrf_token %}
+        USERNAME: <input type="text" name="username">
+        <br>
+        EMAIL: <input type="email" name="email">
+        <br>
+        PASSWORD: <input type="password" name="password">
+        <br>
+        CONFIRM PASSWORD: <input type="password" name="confirmpassword">
+        <br>
+        <input type="submit" class="btn btn-primary" value="sing up">
+    </form>
+{% endblock %}
