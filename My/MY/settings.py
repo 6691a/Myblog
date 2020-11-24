@@ -126,12 +126,23 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
 # email 인증
-EMAIL = {
-    'EMAIL_BACKEND': 'django.core.mail.backends.smtp.EmailBackend',
-    'EMAIL_HOST': 'smtp.gmail.com',
-    'EMAIL_PORT': 587,
-    'EMAIL_HoST_USER': 'junjuniya@gmail.com',
-    'EMAIL_HOST_PASSWORD': 'wnsldi955',
-    'EMAIL_USE_TLS': True,
-}
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.googlemail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = '421079a@gmail.com'
+# EMAIL_HOST_PASSWORD = ''
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_HOST_USER = '6691a'
+EMAIL_HOST_PASSWORD = 'wnsldi955'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+DEFAULT_FROM_MAIL = '6691a'

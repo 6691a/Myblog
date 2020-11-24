@@ -1,0 +1,86 @@
+* {
+  /* 패딩을 줄때도 동일한 폭을 갖기 위함 */
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  margin: 0;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: yellowgreen;
+
+  align-items: center;
+  font-size: 20px;
+  padding: 8px 12px;
+}
+
+.navbar_logo {
+  font-size: 30px;
+}
+.navbar_logo img {
+  width: 120px;
+  height: 60px;
+  vertical-align: middle;
+}
+
+.navbar_menu {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.navbar_menu li {
+  padding: 0 15px;
+}
+
+.navbar_menu img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+.navbar_togleBtn {
+  display: none;
+  position: absolute;
+  right: 12px;
+  padding: 12px 12px;
+}
+.navbar_togleBtn img {
+  width: 30px;
+  height: 30px;
+}
+
+@media screen and (max-width: 780px) {
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar_menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 8px 12px;
+  }
+
+  .navbar_menu li {
+    padding: 15px 15px;
+    text-align: center;
+  }
+
+  .navbar_togleBtn {
+    display: block;
+  }
+
+  .navbar_menu.active {
+    display: block;
+  }
+}

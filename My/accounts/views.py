@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 
-
-# Create your views here.
+# email 인증
 
 
 def signup(request):
@@ -15,9 +14,7 @@ def signup(request):
                 email=request.POST['email'],
                 is_active=False,
             )
-
             #auth.login(request, user)
-            print(user.email)
             return render(request, 'authentic.html', {'user': user.email})
         return render(request, 'signup.html')
     return render(request, 'signup.html')
@@ -44,3 +41,11 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('posts')
+
+
+def sendEmail(request, user):
+    pass
+
+
+def activate(request, uid64, token):
+    pass
