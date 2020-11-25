@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post
+from .forms import AddPostForm
 # Create your views here.
 
 
@@ -22,4 +23,5 @@ def addPostView(request):
         post.save()
         return render(request, "postSuccess.html")
     else:
-        return render(request, 'addPost.html')
+        form = AddPostForm()
+        return render(request, 'addPost.html', {'form': form})
