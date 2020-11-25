@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'six',
     'blog',
     'accounts',
 ]
@@ -139,10 +139,9 @@ STATICFILES_DIRS = [
 # EMAIL_HOST_PASSWORD = ''
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.naver.com'
-EMAIL_HOST_USER = '6691a'
-EMAIL_HOST_PASSWORD = 'wnsldi955'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-DEFAULT_FROM_MAIL = '6691a'
+EMAIL_HOST = 'smtp.gmail.com' 		 # 메일 호스트 서버
+EMAIL_PORT = '587'  # 서버 포트
+EMAIL_HOST_USER = '421079a@gmail.com' 	 # 우리가 사용할 Gmail
+EMAIL_HOST_PASSWORD = 'wnsldi955'		 # 우리가 사용할 Gmail p
+EMAIL_USE_TLS = True			 # TLS 보안 설정
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
