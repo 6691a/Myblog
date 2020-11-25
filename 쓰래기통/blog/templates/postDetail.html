@@ -5,6 +5,6 @@
     <h1> {{post.title}}</h1>
     <small>By: {{post.author}}</small>
     <hr>
-    {{post.body}}
+    {{post.body|safe}}
     <a href="{% url 'posts' %}"class="btn btn-dark">Back</a>
 {% endblock %}

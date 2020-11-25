@@ -9,10 +9,13 @@ a {
   text-decoration: none;
 }
 
-.login_heder {
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.login_heder {
   font-size: 60px;
   margin: 0 90px;
   padding-top: 100px;
@@ -20,9 +23,6 @@ a {
 }
 
 .login_body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0 95px;
 }
 
@@ -48,16 +48,10 @@ a {
 }
 
 .find_info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding-top: 20px;
 }
 
 .check_info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-top: 15px;
 }
 

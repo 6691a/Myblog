@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    path('accounts/', include('accounts.urls'))
-
+    path('accounts/', include('accounts.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
+
+# MEDIA_URL 형태로 들어오면 document_root에서 파일을 찾아라
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

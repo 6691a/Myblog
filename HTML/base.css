@@ -5,7 +5,6 @@
 
 a {
   text-decoration: none;
-  color: white;
 }
 
 body {
@@ -34,6 +33,10 @@ body {
   display: flex;
   list-style: none;
   padding: 0;
+  color: white;
+}
+.navbar_menu a {
+  color: white;
 }
 
 .navbar_menu li {

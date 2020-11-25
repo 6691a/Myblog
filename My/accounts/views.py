@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
 
@@ -13,12 +13,14 @@ from django.utils.encoding import force_bytes, force_text
 
 def signup(request):
     if request.method == 'POST':
+
         if request.POST['password'] == request.POST['confirmpassword']:
             user = User.objects.create_user(
                 username=request.POST['username'],
                 password=request.POST['password'],
                 email=request.POST['email'],
                 is_active=False,
+                
             )
             message = sendEmail(request, user)
             return render(request, 'authentic.html', {'user': user.email})
@@ -28,6 +30,7 @@ def signup(request):
 
 def login(request):
     if request.method == 'POST':
+        print( request.POST['username'])
         username = request.POST['username']
         password = request.POST['password']
         user = auth.authenticate(request, username=username, password=password)

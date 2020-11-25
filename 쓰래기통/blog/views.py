@@ -10,7 +10,6 @@ def postView(request):
 
 def postDetailView(request, pk):
     post = Post.objects.get(pk=pk)
-    print(pk)
     return render(request, "postDetail.html", {'post': post})
 
 
@@ -23,4 +22,4 @@ def addPostView(request):
         post.save()
         return render(request, "postSuccess.html")
     else:
-        return render(request, 'addpost.html')
+        return render(request, 'addPost.html')

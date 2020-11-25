@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'six',
-    'blog',
+    'ckeditor',
+    'ckeditor_uploader',
+
+    'post',
     'accounts',
 ]
 
@@ -131,17 +134,18 @@ STATICFILES_DIRS = [
 ]
 
 # email 인증
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.googlemail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = '421079a@gmail.com'
-# EMAIL_HOST_PASSWORD = ''
 
-
-EMAIL_HOST = 'smtp.gmail.com' 		 # 메일 호스트 서버
-EMAIL_PORT = '587'  # 서버 포트
+EMAIL_HOST = 'smtp.gmail.com' 		     # 메일 호스트 서버
+EMAIL_PORT = '587'                       # 서버 포트
 EMAIL_HOST_USER = '421079a@gmail.com' 	 # 우리가 사용할 Gmail
 EMAIL_HOST_PASSWORD = 'wnsldi955'		 # 우리가 사용할 Gmail p
-EMAIL_USE_TLS = True			 # TLS 보안 설정
+EMAIL_USE_TLS = True			         # TLS 보안 설정
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# CKEDIROT FILE PATH
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
