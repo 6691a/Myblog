@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(245, 246, 247);
+}
+
+a {
+  text-decoration: none;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  color: red;
+}
+
+.logo {
+  font-size: 60px;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+.container {
+  margin: 0 15px;
+}
+
+.container input {
+  width: 450px;
+  height: 50px;
+  width: 100%;
+}
+
+.form {
+  width: 450px;
+}
+
+.submitBtn {
+  background-color: rgb(3, 199, 90);
+  color: white;
+  border: none;
+  margin-top: 25px;
+}
+
+input:focus {
+  outline: none;
+}
+
+input:hover {
+  cursor: pointer;
+}
+
+h5 {
+  height: 13px;
+}

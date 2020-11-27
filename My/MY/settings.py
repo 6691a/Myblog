@@ -38,9 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'six',
-    'ckeditor',
     'ckeditor_uploader',
-
+    'ckeditor',
     'blog',
     'accounts',
 ]
@@ -145,7 +144,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # CKEDIROT FILE PATH
 CKEDITOR_UPLOAD_PATH = 'uploads/'
-CKEDITOR_IMAGE_BACKEND = "pillow"
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

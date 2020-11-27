@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
-from .forms import UserForm
+from .forms import *
 # email 인증
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -11,31 +11,26 @@ from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
 
 
-def signup(request):
+# def signup(request):
+#     if request.method == 'POST':
+#         form = SignupForm(request.POST)
+#         if form.is_valid():
+#             pass
+#             # user = form.save()
+#             # sendEmail(request, user)
+#             # return render(request, 'authentic.html', {'user': user.email})
+#         return render(request, 'signup.html', {'form': form})
+#     return render(request, 'signup.html', {'form': SignupForm()})
+
+
+def my_singup(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
-
-        if(form.is_valid()):
-            user = User.objects.create_user(**form.cleaned_data)
-            user.is_active = False
+        if clean(request):
+            user = create_user(request)
+            sendEmail(request, user)
+            return render(request, 'authentic.html', {'user': user.email})
         else:
-            return HttpResponse('ID 중복 오류')
-        print(form.cleaned_data)
-        # if request.POST['password'] == request.POST['confirmpassword']:
-        # user = User.objects.create_user(
-        #     # form.cleaned_data,
-        #     # username=request.POST['username'],
-        #     # password=request.POST['password'],
-        #     # email=request.POST['email'],
-        #     is_active=False,
-        # )
-
-        #sendEmail(request, user)
-        # return render(request, 'authentic.html', {'user': user.email})
-        # else:
-        # pass
-
-        return render(request, 'signup.html')
+            return render(request, 'signup.html')
     return render(request, 'signup.html')
 
 
