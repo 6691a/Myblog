@@ -9,35 +9,55 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block css %}
     {% endblock %}
-
     <script src="{% static 'js/base.js' %}" defer></script>
     {% block js %}
     {% endblock %}
-    
-    
-  
 
-    <title>My Blog -{% block title %} {% endblock %}</title>
+    <title>My Blog </title>
 </head>
 <body>
   <nav id="navbar">
-    <div class="">
-      <img class="navbar_logo" src="{% static 'img/pngwing.png' %}" alt="logo_icon">
-      <a  href="" class="navbar_title" >My Blog</a>
+    <div class="navbar_logo">
+      <img src="{% static '/img/pngwing.png' %}" alt="logo_icon">
+      <a href="{% url 'posts' %}">My Blog</a>
     </div>
-    <div class="navbar_menu">
-      <a href="" class="navbar_menu_item" ><img class="navbar_menu_logo"src="{% static 'img/github.png' %}" alt="github_icon">Github</a>
-      <a href="" class="navbar_menu_item"><img class="navbar_menu_logo"src="{% static 'img/youtube.png' %}" alt="youtube_icon">YouTube</a>
-      <a href="" class="navbar_menu_item">Login</a>
-      <a href="" class="navbar_menu_item">Logout</a>
-    </div>
- 
+    <ul class="navbar_menu">
+      <li>
+        <img src="{% static '/img/github.png '%}" alt="github_icon">
+        <a href="#" class="navbar_menu_item" >Github</a>
+      </li>
+      <li>
+        <img src="{% static '/img/youtube.png' %}" alt="youtube_icon">
+        <a href="#" class="navbar_menu_item">YouTube</a>
+      </li>
+      {% if user.is_authenticated %}
+      <li>
+        {{user.username}}
+      </li>
+      <li>
+        <a href="{% url 'logout' %}" class="navbar_menu_item">Logout</a>
+      </li>
+      {% else %}
+      <li>
+        <a href="{% url 'login' %}" class="navbar_loggin_Btn">Login</a>
+      </li>
+      {% endif %}
+      <!-- <li>
+        <a href="#" class="navbar_menu_item">Singup</a>
+      </li> -->
+
+    </ul>
+    <a href="#"class="navbar_togleBtn">
+      <img src="{% static '/img/menu.png' %}" alt="">
+    </a>
   </nav>
-        {% block content %}
-        {% endblock %}
-        <footer class="footer">
-            <p>&copy; 2020 MyBlog. Powered By Django</p>
-        </footer>
-    </div>
+
+  {% block content %}
+  {% endblock %}
+  <div>
+    <footer class="footer">
+    <p>&copy; 2020 MyBlog. Powered By Django</p>
+    </footer>
+  </div>
 </body>
 </html>

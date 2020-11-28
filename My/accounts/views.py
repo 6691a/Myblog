@@ -36,7 +36,7 @@ def my_singup(request):
 
 def login(request):
     if request.method == 'POST':
-        print(request.POST['username'])
+        print(request.POST)
         username = request.POST['username']
         password = request.POST['password']
         user = auth.authenticate(request, username=username, password=password)

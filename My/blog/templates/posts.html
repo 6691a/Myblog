@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 <head>
-    {% load static %}
+ 
     {% block css %}
-    <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/posts.css' %}"> -->
     {% endblock %}
     {% block js %}
-    <script src="{% static 'js/posts.js' %}"defer></script>
+    <!-- <script src="{% static 'js/posts.js' %}"defer></script> -->
     {% endblock %}
 {% block title %} PostList {% endblock %}
 </head>

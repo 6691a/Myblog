@@ -10,12 +10,11 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  border: solid 1px red;
 }
 .login_head {
   /* display: none; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .login_close_button {
   border: none;
