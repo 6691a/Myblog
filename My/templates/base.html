@@ -23,7 +23,7 @@
     </div>
     <ul class="navbar_menu">
       <li>
-        <img src="{% static '/img/github.png '%}" alt="github_icon">
+        <img src="{% static '/img/github.png' %}" alt="github_icon">
         <a href="#" class="navbar_menu_item" >Github</a>
       </li>
       <li>
@@ -33,6 +33,9 @@
       {% if user.is_authenticated %}
       <li>
         {{user.username}}
+      </li>
+      <li>
+        <a href="{% url 'addPost' %}" class="navbar_menu_item">Post</a>
       </li>
       <li>
         <a href="{% url 'logout' %}" class="navbar_menu_item">Logout</a>
