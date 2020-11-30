@@ -148,3 +148,45 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'height': 400,
+        'width': '100%',
+        'toolbar_Custom': [
+            ["Styles",
+             "Format",
+             "Bold",
+             "Italic",
+             "Underline",
+             "Strike",
+             "SpellChecker",
+             "Undo",
+             "Redo", ],
+            ["Link", "Unlink", "Anchor"],
+            ["Image", "Flash", "Table", "HorizontalRule"],
+            ["TextColor", "BGColor"],
+            ['CodeSnippet'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+            ["Smiley", "SpecialChar"],
+            ['Source'],
+        ],
+        'extraPlugins': ','.join(
+            [
+                'codesnippet',
+            ]),
+    },
+}
+
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'full',
+#         'extraPlugins': ','.join(
+#             [
+#                 'codesnippet',
+#             ]),
+#     },
+# }

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    {% block css %}
+    <!-- <link rel="stylesheet" href="{% static 'css/posts.css' %}"> -->
+    {% endblock %}
+    {% block js %}
+    <!-- <script src="{% static 'js/posts.js' %}"defer></script> -->
+    {% endblock %}
+{% block title %} List {% endblock %}
+</head>
+
+<body>
+{% block content %}
+    <div>
+      <div>
+          
+          <a href="/" class="{% if not current_category %}active{% endif %}">ALL</a>
+          {% for c in catagories %}
+            <a href="{{c.get_absolute_url}}" class=" ">{{c.name}}</a>
+            </a>
+          {% endfor %}
+      </div>
+
+      <div>
+          {% if current_category %}
+          <h1>{{current_category}}</h1>
+          {% else %}
+          <h1>ALL POST</h1>
+          {% endif %}
+          <div>
+            {% for p in posts %}
+            <h1>{{p.title}}</h1>
+            <h4>{{p.author}} / {{p.category}}</h4>
+            <div>
+              {{p.body|safe}}
+              <a href="{{p.get_absolute_url}}">Detail</a>
+            {% endfor %}
+         
+              </div>
+          </div>
+      </div>
+    </div>
+{% endblock %}
+</body>

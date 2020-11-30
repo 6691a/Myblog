@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+ 
+    {% block css %}
+    <!-- <link rel="stylesheet" href="{% static 'css/posts.css' %}"> -->
+    {% endblock %}
+    {% block js %}
+    <!-- <script src="{% static 'js/posts.js' %}"defer></script> -->
+    {% endblock %}
+{% block title %} List {% endblock %}
+</head>
+
+<body>
+{% block content %}
+
+    <div>
+        <div>
+            <h1>{{posts.title}}</h1>
+            <h4>{{posts.author}}</h4>
+        </div>
+        <div>
+            {{posts.body|safe}}
+        </div>
+    </div>
+{% endblock %}
+</body>

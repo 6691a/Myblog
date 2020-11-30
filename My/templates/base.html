@@ -19,7 +19,7 @@
   <nav id="navbar">
     <div class="navbar_logo">
       <img src="{% static '/img/pngwing.png' %}" alt="logo_icon">
-      <a href="{% url 'posts' %}">My Blog</a>
+      <a href="{% url 'post:post_all' %}">My Blog</a>
     </div>
     <ul class="navbar_menu">
       <li>
@@ -35,7 +35,7 @@
         {{user.username}}
       </li>
       <li>
-        <a href="{% url 'addPost' %}" class="navbar_menu_item">Post</a>
+        <a href="{% url 'post:add_post' %}" class="navbar_menu_item">Post</a>
       </li>
       <li>
         <a href="{% url 'logout' %}" class="navbar_menu_item">Logout</a>

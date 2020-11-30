@@ -42,7 +42,7 @@ def login(request):
         user = auth.authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('posts')
+            return redirect('post:add_post')
         else:
             return render(request, 'login.html', {'error': 'username or password is incorrect'})
     else:
@@ -51,7 +51,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('posts')
+    return redirect('post:add_post')
 
 
 def sendEmail(request, user):
@@ -80,6 +80,6 @@ def activate(request, uid64, token):
 
         # 활성화 이후 완료 페이지 보내주기
         # 일단은 메인을 보냄
-        return redirect('posts')
+        return redirect('post:add_post')
     else:  # 비정상 접근 처리
         pass
