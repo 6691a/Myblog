@@ -14,12 +14,14 @@
 <body>
 {% block content %}
 
-    <div>
-        <div>
-            <h1>{{posts.title}}</h1>
-            <h4>{{posts.author}}</h4>
+    <div id="detail">
+        <div class="head">
+            <small><a href="">카테고리</a></small>
+            <h1 class="title">{{posts.title}}</h1>
+            <h4>{{posts.author}} | {{posts.created|date:"Y. m. d. h:i "}}</h4>
         </div>
-        <div>
+        <hr>
+        <div class='body'>
             {{posts.body|safe}}
         </div>
     </div>

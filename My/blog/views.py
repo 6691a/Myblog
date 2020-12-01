@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import AddPostForm
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 
 def postView(request):
@@ -42,12 +43,31 @@ def post_in_category(request, category_slug=None):
     # 지연평가 방식 사용 데이터를 사용, 출력하기 전에는 실행되지 않음
     current_category = None
     catagories = Category.objects.all()
-    print(catagories)
     posts = Post.objects.filter(display=True)
     if category_slug:
-        print(category_slug)
         current_category = get_object_or_404(Category, slug=category_slug)
         posts = Post.objects.filter(category=current_category)
+    return render(request, 'list.html', {
+        'current_category': current_category,
+        'catagories': catagories,
+        'posts': posts,
+    })
+
+
+def post_page_category(request, category_slug=None):
+    # filter를 2번 사용해 퀘리에서 2번 값을 가져오지 않는다
+    # # 지연평가 방식 사용 데이터를 사용, 출력하기 전에는 실행되지 않음
+    catagories = Category.objects.all()
+
+    if category_slug:
+        current_category = get_object_or_404(Category, slug=category_slug)
+        posts = post_paging(request, 1, current_category)
+        # posts = Post.objects.filter(category=current_category)
+    else:
+        current_category = None
+        posts = post_paging(request, 1, category_slug)
+        # posts = Post.objects.filter(display=True)
+
     return render(request, 'list.html', {
         'current_category': current_category,
         'catagories': catagories,
@@ -60,3 +80,20 @@ def post_detail(request, id, post_slug=None):
     return render(request, 'detail.html', {
         'posts': posts
     })
+
+
+def post_paging(request, page_number, category=None):
+    # 웹의 정보 가져오기
+
+    page = request.GET.get('page', '1')
+
+    if category:
+        posts = Post.objects.filter(
+            category=category, display=True).order_by('-created')
+    else:
+        posts = Post.objects.filter(display=True).order_by('-created')
+
+    paginator = Paginator(posts, page_number)
+
+    queryset = paginator.get_page(page)
+    return queryset
