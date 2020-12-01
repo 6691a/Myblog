@@ -181,5 +181,5 @@ CKEDITOR_CONFIGS = {
 # }
 
 # disqus setting
-DISQUS_WEBSITE_SHORTNAME = 'junjuniya'
+DISQUS_WEBSITE_SHORTNAME = 'junjuniy'
 SITE_ID = 1
