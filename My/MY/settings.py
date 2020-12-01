@@ -12,23 +12,20 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+import MY.setting as setting
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+SECRET_KEY = setting.SECRET_KEY
+# 'rftr5t%cm!2htso9dawd=#7t8$=lb*q8rnb#^z+4*&h13kjq5u'
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'rftr5t%cm!2htso9dawd=#7t8$=lb*q8rnb#^z+4*&h13kjq5u'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,6 +37,8 @@ INSTALLED_APPS = [
     'six',
     'ckeditor_uploader',
     'ckeditor',
+    'django.contrib.sites',
+    'disqus',
     'blog',
     'accounts',
 ]
@@ -78,16 +77,7 @@ WSGI_APPLICATION = 'MY.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'My',
-        'USER': 'we',
-        'PASSWORD': '!Qw3456789',
-        'HOST': 'junjuniya.i234.me',
-        'PORT': '3306',
-    }
-}
+DATABASES = setting.DATABASES
 
 
 # Password validation
@@ -136,8 +126,8 @@ STATICFILES_DIRS = [
 
 EMAIL_HOST = 'smtp.gmail.com' 		     # 메일 호스트 서버
 EMAIL_PORT = '587'                       # 서버 포트
-EMAIL_HOST_USER = '421079a@gmail.com' 	 # 우리가 사용할 Gmail
-EMAIL_HOST_PASSWORD = 'wnsldi955'		 # 우리가 사용할 Gmail p
+EMAIL_HOST_USER = setting.EMAIL_HOST_USER 	 # 우리가 사용할 Gmail
+EMAIL_HOST_PASSWORD = setting.EMAIL_HOST_PASSWORD		 # 우리가 사용할 Gmail p
 EMAIL_USE_TLS = True			         # TLS 보안 설정
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
@@ -149,7 +139,7 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+# ckeditor setting
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
@@ -180,7 +170,6 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-
 # CKEDITOR_CONFIGS = {
 #     'default': {
 #         'toolbar': 'full',
@@ -190,3 +179,7 @@ CKEDITOR_CONFIGS = {
 #             ]),
 #     },
 # }
+
+# disqus setting
+DISQUS_WEBSITE_SHORTNAME = 'junjuniya'
+SITE_ID = 1
