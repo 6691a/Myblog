@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import *
+from django.contrib import messages
+
 # email 인증
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -42,16 +44,17 @@ def login(request):
         user = auth.authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('post:add_post')
+            return redirect('post:post_all')
         else:
-            return render(request, 'login.html', {'error': 'username or password is incorrect'})
+            messages.warning(request, "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.")
+            return render(request, 'login.html')
     else:
         return render(request, 'login.html')
 
 
 def logout(request):
     auth.logout(request)
-    return redirect('post:add_post')
+    return redirect('post:post_all')
 
 
 def sendEmail(request, user):
@@ -80,6 +83,6 @@ def activate(request, uid64, token):
 
         # 활성화 이후 완료 페이지 보내주기
         # 일단은 메인을 보냄
-        return redirect('post:add_post')
+        return redirect('post:post_all')
     else:  # 비정상 접근 처리
         pass

@@ -55,6 +55,18 @@
     </a>
   </nav>
 
+  {% for message in messages %}
+  {% if message.tags %} 
+  <div>
+    <a href=""></a>
+  </div>
+  <script>
+  alert("{{ message }}");
+  </script> 
+  {% endif %}
+  {% endfor %}
+
+
   {% block content %}
   {% endblock %}
   <div>
