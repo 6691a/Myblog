@@ -21,8 +21,8 @@
             <hr>
             <div class="login_body">
                 <form action=""method ="POST">
-                    {% csrf_token %}   
-                    <input class="input_field" type="text", name="username", placeholder ="아이디">
+                    {% csrf_token %}
+                    <input class="input_field" type="text", name="username", placeholder ="아이디" , value = {{username}}>
                     <input class="input_field" type="password", name="password", placeholder ="비밀번호">
                     <input class="submit_Btn"type="submit" value="로그인">
                 </form>

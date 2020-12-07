@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+ 
+    {% block css %}
+    <!-- <link rel="stylesheet" href="{% static 'css/posts.css' %}"> -->
+    {% endblock %}
+    {% block js %}
+    <!-- <script src="{% static 'js/posts.js' %}"defer></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  
+    {% endblock %}
+{% block title %} PostList {% endblock %}
+</head>
+
+<body>
+{% block content %}
+        
+{% for page_number in posts.paginator.page_range %}
+            
+
+<li class="page-item">
+    <a class="page-link"  name="?page={{ page_number }}">{{ page_number }}</a>
+</li>
+          <!-- {% if page_number == posts.number %}
+          <li class="page-item active" aria-current="page">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+          </li>
+          {% else %}
+          <li class="page-item">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+          </li>
+          {% endif %} -->
+      {% endfor %}
+
+      <div>
+            {% for p in posts %}
+            <h1><a href="{{p.get_absolute_url}}">{{p.title}}</a></h1>
+            <h4>{{p.category}} | {{p.author}} | {{p.created|date:"Y. m. d. h:i "}}</h4>
+            {% endfor %}
+     </div>
+ 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(".page-link").click(function(){
+        var category_slug = $(this).attr('name')
+        $.ajax({
+            type: "GET",
+            url : "{% url 'post:post_all' %}",
+            dataType: 'json',
+            success:function(request){
+                alert('통신 성공');
+                alert(data);
+            },
+            error: function(request,status,error) {
+                alert('통신 실패')
+                alert(error)
+            },
+        })
+    })
+</script>
+{% endblock %}
+</body>

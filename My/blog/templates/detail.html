@@ -3,7 +3,7 @@
 <head>
  
     {% block css %}
-    <!-- <link rel="stylesheet" href="{% static 'css/posts.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
     {% endblock %}
     {% block js %}
     <!-- <script src="{% static 'js/posts.js' %}"defer></script> -->
@@ -13,16 +13,22 @@
 
 <body>
 {% block content %}
-
     <div>
-        <a href="{% url 'post:post_delete' id=posts.id %}">삭제</a>
+        <small><a href="">{{posts.category}}</a></small>
+        
     </div>
 
     <div id="detail">
         <div class="head">
-            <small><a href="">카테고리</a></small>
-            <h1 class="title">{{posts.title}}</h1>
-            <h4>{{posts.author}} | {{posts.created|date:"Y. m. d. h:i "}}</h4>
+            {% if user.is_authenticated and user == posts.author %}
+            <div class="opstion">
+                <a href="{% url 'post:post_delete' id=posts.id %}", class="button">삭제</a>
+                <a href="{% url 'post:post_update' id=posts.id %}", class="button">수정</a>
+            </div>
+            {% endif %}
+            
+            <h2 class="title">{{posts.title}}</h2>
+            <h5>{{posts.created|date:"Y. m. d. h:i "}}</h5>
         </div>
         <hr>
         <div class='body'>
@@ -30,7 +36,7 @@
         </div>
     </div>
 
-    <div>
+    <div id="comment">
         {% load disqus_tags%}
         {% disqus_show_comments%}
     </div>

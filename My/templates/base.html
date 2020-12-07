@@ -4,32 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/book.ico' %}"/>
+
+
     {% block css %}
     {% endblock %}
     <script src="{% static 'js/base.js' %}" defer></script>
     {% block js %}
     {% endblock %}
 
-    <title>My Blog </title>
+    <title>프로그래밍 도서관 </title>
 </head>
 <body>
   <nav id="navbar">
     <div class="navbar_logo">
-      <img src="{% static '/img/pngwing.png' %}" alt="logo_icon">
-      <a href="{% url 'post:post_all' %}">My Blog</a>
+      <img src="{% static 'img/book.png' %}" alt="logo_icon">
+      <a href="{% url 'post:post_all' %}">프로그래밍 도서관</a>
     </div>
     <ul class="navbar_menu">
       <li>
-        <img src="{% static '/img/github.png' %}" alt="github_icon">
-        <a href="#" class="navbar_menu_item" >Github</a>
+        <img src="{% static 'img/github.png' %}" alt="github_icon">
+        <a href="https://github.com/6691a/Myblog" target="_blank" class="navbar_menu_item" >Github</a>
       </li>
-      <li>
+      <!-- <li>
         <img src="{% static '/img/youtube.png' %}" alt="youtube_icon">
-        <a href="#" class="navbar_menu_item">YouTube</a>
-      </li>
+        <a href="#" class="navbar_menu_item"  target="_blank">YouTube</a>
+      </li> -->
       {% if user.is_authenticated %}
       <li>
         {{user.username}}
@@ -48,11 +49,13 @@
       <!-- <li>
         <a href="#" class="navbar_menu_item">Singup</a>
       </li> -->
-
     </ul>
     <a href="#"class="navbar_togleBtn">
       <img src="{% static '/img/menu.png' %}" alt="">
     </a>
+    <!-- <div class="navbar_bg">
+      <img src="{% static '/img/purple gradient background.png' %}" alt="">
+    </div> -->
   </nav>
 
   {% for message in messages %}

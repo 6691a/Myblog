@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block css %}
+    {% endblock %}
+    <script src="{% static 'js/base.js' %}" defer></script>
+    {% block js %}
+    {% endblock %}
+
+    <title>My Blog </title>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="navbar_logo">
+      <img src="{% static '/img/pngwing.png' %}" alt="logo_icon">
+      <a href="{% url 'post:post_all' %}">My Blog</a>
+    </div>
+    <ul class="navbar_menu">
+      <li>
+        <img src="{% static '/img/github.png' %}" alt="github_icon">
+        <a href="https://github.com/6691a/Myblog" target="_blank" class="navbar_menu_item" >Github</a>
+      </li>
+      <!-- <li>
+        <img src="{% static '/img/youtube.png' %}" alt="youtube_icon">
+        <a href="#" class="navbar_menu_item"  target="_blank">YouTube</a>
+      </li> -->
+      {% if user.is_authenticated %}
+      <li>
+        {{user.username}}
+      </li>
+      <li>
+        <a href="{% url 'post:add_post' %}" class="navbar_menu_item">Post</a>
+      </li>
+      <li>
+        <a href="{% url 'logout' %}" class="navbar_menu_item">Logout</a>
+      </li>
+      {% else %}
+      <li>
+        <a href="{% url 'login' %}" class="navbar_loggin_Btn">Login</a>
+      </li>
+      {% endif %}
+      <!-- <li>
+        <a href="#" class="navbar_menu_item">Singup</a>
+      </li> -->
+
+    </ul>
+    <a href="#"class="navbar_togleBtn">
+      <img src="{% static '/img/menu.png' %}" alt="">
+    </a>
+  </nav>
+
+  <div>
+    <footer class="footer">
+    <p>&copy; 2020 MyBlog. Powered By Django</p>
+    </footer>
+  </div>
+</body>
+</html>

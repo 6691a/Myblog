@@ -2,7 +2,7 @@
 {% load static %}
 <head>
     {% block css %}
-    <!-- <link rel="stylesheet" href="{% static 'css/posts.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
     {% endblock %}
     {% block js %}
     <!-- <script src="{% static 'js/posts.js' %}"defer></script> -->
@@ -12,68 +12,51 @@
 
 <body>
 {% block content %}
-    <div>
-      <div>
-          <a href="/" class="{% if not current_category %}active{% endif %}">ALL</a>
-          {% for c in catagories %}
-            <a href="{{c.get_absolute_url}}" class=" ">{{c.name}}</a>
-            </a>
-          {% endfor %}
-      </div>
+<div>
+    <div id="category">
+        <a href="/" class="category_Btn {% if not current_category %}active{% endif %}">ALL</a>
+        {% for c in catagories %}
+            <a href="{{c.get_absolute_url}}" class="category_Btn {% if current_category == c%} active {% endif %}">{{c.name}}</a>
+        {% endfor %}
+    </div>
 
 <!--  -->
-    <ul class="pagination justify-content-center">
-      <!-- 이전페이지 -->
-      {% if posts.has_previous %}
-      <li class="page-item">
-          <a class="page-link" href="?page={{ posts.previous_page_number }}">이전</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-      </li>
-      {% endif %}
-      <!-- 페이지리스트 -->
-      {% for page_number in posts.paginator.page_range %}
-          {% if page_number == posts.number %}
-          <li class="page-item active" aria-current="page">
-              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-          </li>
-          {% else %}
-          <li class="page-item">
-              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-          </li>
-          {% endif %}
-      {% endfor %}
-      <!-- 다음페이지 -->
-      {% if posts.has_next %}
-      <li class="page-item">
-          <a class="page-link" href="?page={{ posts.next_page_number }}">다음</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-      </li>
-      {% endif %}
-    </ul>
-<!--  -->
-          {% if current_category %}
-          <h1>{{current_category}}</h1>
-          {% else %}
-          <h1>ALL POST</h1>
-          {% endif %}
-          <div>
-            {% for p in posts %}
-            <h1><a href="{{p.get_absolute_url}}">{{p.title}}</a></h1>
-            <h4>{{p.author}} / {{p.category}}</h4>
-            <div>
-              {{p.body|safe}}
-              
-            {% endfor %}
-         
-              </div>
-          </div>
-      </div>
+    <div id="page">
+    <!-- 이전페이지 -->
+    {% if posts.has_previous %}
+        <a class="page_Btn" href="?page={{ posts.previous_page_number }}"><</a>
+    {% else %}
+        <a class="page_Btn" tabindex="-1" aria-disabled="true" href="#"><</a>
+    {% endif %}
+
+    <!-- 페이지리스트 -->
+    {% for page_number in posts.paginator.page_range %}
+        {% if page_number == posts.number %}
+            <a class="page_Btn active" href="?page={{ page_number }}">{{ page_number }}</a>
+        {% else %} 
+            <a class="page_Btn" href="?page={{ page_number }}">{{ page_number }}</a>
+        {% endif %}
+    {% endfor %}
+    <!-- 다음페이지 -->
+    {% if posts.has_next %}
+
+    <a class="page_Btn" href="?page={{ posts.next_page_number }}">></a>
+    {% else %} 
+    <a class="page_Btn" tabindex="-1" aria-disabled="true" href="#">></a>
+    {% endif %} 
     </div>
+    <div>
+        {% for p in posts %}
+        <div class="post_list">
+            <h2><a href="{{p.get_absolute_url}}">{{p.title}}</a></h2>
+            <h4>{{p.category}} | {{p.created|date:"Y. m. d. h:i "}}</h4>
+        </div>
+        {% endfor %}
+            <!-- <div>
+            {{p.body|safe}} 
+            </div> -->
+        </div>
+    </div>
+</div>
 {% endblock %}
 </body>

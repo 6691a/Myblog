@@ -62,11 +62,11 @@ def post_page_category(request, category_slug=None):
 
     if category_slug:
         current_category = get_object_or_404(Category, slug=category_slug)
-        posts = post_paging(request, 1, current_category)
+        posts = post_paging(request, 5, current_category)
         # posts = Post.objects.filter(category=current_category)
     else:
         current_category = None
-        posts = post_paging(request, 1, category_slug)
+        posts = post_paging(request, 5, category_slug)
         # posts = Post.objects.filter(display=True)
 
     return render(request, 'list.html', {
@@ -96,11 +96,12 @@ def post_delete(request, id):
 
 
 def post_update(request, id):
+    post = get_object_or_404(Post, id=id)
     if request.method == 'POST':
-        post = get_object_or_404(Post, id=id)
         if post.author == request.user:
+            category = Category.objects.get(pk=request.POST['category'])
             post.body = request.POST['body']
-            post.category = request.POST['category']
+            post.category = category
             if(post.title != request.POST['title']):
                 post.title = request.POST['title']
                 post.slug = title_to_slug(request)
@@ -110,7 +111,9 @@ def post_update(request, id):
             messages.warning(request, "권한이 없습니다.")
             return post_detail(request, id, post.slug)
     else:
-        return render(request, 'update.html')
+
+        form = AddPostForm(instance=post)
+        return render(request, 'update.html', {'form': form})
 
 
 def post_paging(request, page_number, category=None):

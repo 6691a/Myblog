@@ -47,7 +47,8 @@ def login(request):
             return redirect('post:post_all')
         else:
             messages.warning(request, "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.")
-            return render(request, 'login.html')
+
+            return render(request, 'login.html', {'username': request.POST['username']})
     else:
         return render(request, 'login.html')
 

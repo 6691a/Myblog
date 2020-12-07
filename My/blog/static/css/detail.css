@@ -1,0 +1,29 @@
+.opstion {
+  display: flex;
+  justify-content: space-between;
+}
+
+.head h2 {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.head h5 {
+  color: #666666;
+  margin-top: 5px;
+}
+
+.button {
+  width: 75px;
+  background-color: #eff0f2;
+  border-radius: 10px;
+  color: black;
+  padding: 15px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px;
+  cursor: pointer;
+}
